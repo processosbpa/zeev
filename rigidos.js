@@ -46,11 +46,12 @@ function tabelasId() {
 // Função para executar primeiro, depois de 15 segundos executa a segunda função
 function executarFuncoesSequenciais() {
     // Executa a primeira função
-    elementosId();
+    
+    tabelasId();
 
     // Define um timeout de 15 segundos para executar a segunda função
     setTimeout(() => {
-        tabelasId();
+        elementosId();
     }, 15000); // 15000 milissegundos = 15 segundos
 }
 
