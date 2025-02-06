@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", () => {
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
 
@@ -7,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // Mapeamento de elementos para exibição
     const elements = {
         CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
         CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
@@ -20,20 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
 
-    const captionsParaOcultar = {
-        CONSERVAS: "Tabela itens conserva",
-        CHOCOLATE: "Tabela de itens - CHOCOLATE",
-        "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
-        PESAGEM: "Tabela de itens - SALA DE PESAGEM",
-        LEITE: "Tabela de itens - LEITE",
-        ENVASE: "Tabela de itens - ENVASE",
-        EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
-        "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
-        "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
-    };
+    // Verificar se os elementos foram encontrados
+    Object.keys(elements).forEach(key => {
+        if (!elements[key]) {
+            console.warn(`Elemento com ID "${key}" não encontrado no DOM.`);
+        }
+    });
 
-    // Função para controlar a exibição dos elementos
+    // Função para exibir ou ocultar elementos com base na seleção
     const atualizarElementos = () => {
         Object.keys(elements).forEach(key => {
             const element = elements[key];
@@ -43,23 +37,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Função para controlar a exibição das tabelas
+    // Função para exibir ou ocultar tabelas com base no caption
     const atualizarTabelas = () => {
+        const captionsParaOcultar = {
+            CONSERVAS: "Tabela itens conserva",
+            CHOCOLATE: "Tabela de itens - CHOCOLATE",
+            "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
+            PESAGEM: "Tabela de itens - SALA DE PESAGEM",
+            LEITE: "Tabela de itens - LEITE",
+            ENVASE: "Tabela de itens - ENVASE",
+            EMBALAGEM: "Tabela de itens - EMBALAGEM",
+            "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
+            "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
+            "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
+        };
+
         document.querySelectorAll("table caption").forEach(caption => {
             const tabela = caption.closest("table");
-            if (!tabela) return;
             tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
         });
     };
 
-    // Executa ambas as funções no carregamento da página
+    // Executa ambas as funções ao carregar a página
     atualizarElementos();
     atualizarTabelas();
 
-    // Adiciona evento para atualizar ao mudar a seleção
+    // Adiciona evento para atualizar sempre que o seletor mudar
     pai.addEventListener("change", () => {
         atualizarElementos();
         atualizarTabelas();
     });
 });
-</script>
