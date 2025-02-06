@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
     var captions = document.querySelectorAll("table caption");
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
     const elements = {
@@ -35,4 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
         const tabela = caption.closest("table");
         tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
     });
+    }, 500);
 });
