@@ -1,4 +1,4 @@
-    document.addEventListener("DOMContentLoaded", () => {
+    function relatorio() {
         var captions = document.querySelectorAll("table caption");
       const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
       const elements = {
@@ -35,4 +35,4 @@
       const tabela = caption.closest("table");
       tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
     });
-    });
+    }
