@@ -6,71 +6,93 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Mapeamento de elementos para exibição
-    const elements = {
-        CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
-        CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
-        "FRUTAS E POLPAS": document.getElementById("FRUTA E POLPA"),
-        PESAGEM: document.getElementById("SALA DE PESAGEM"),
-        LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
-        ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
-        EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        SALA DE REPROCESSO: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
-        "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
-        "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
+    // Associa nomes de setores com IDs de elementos e tabelas
+    const setoresConfig = {
+        CONSERVAS: {
+            elemento: "Controle de materiais rígidos e cortantes - CONSERVAS",
+            tabela: "Tabela itens conserva"
+        },
+        CHOCOLATE: {
+            elemento: "Controle de materiais rígidos e cortantes - CHOCOLATE",
+            tabela: "Tabela de itens - CHOCOLATE"
+        },
+        "FRUTAS E POLPAS": {
+            elemento: "FRUTA E POLPA",
+            tabela: "Tabela de itens - FRUTA E POLPA"
+        },
+        PESAGEM: {
+            elemento: "SALA DE PESAGEM",
+            tabela: "Tabela de itens - SALA DE PESAGEM"
+        },
+        LEITE: {
+            elemento: "Controle de materiais rígidos e cortantes - LEITE",
+            tabela: "Tabela de itens - LEITE"
+        },
+        ENVASE: {
+            elemento: "Controle de materiais rígidos e cortantes - ENVASE",
+            tabela: "Tabela de itens - ENVASE"
+        },
+        EMBALAGEM: {
+            elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM",
+            tabela: "Tabela de itens - EMBALAGEM"
+        },
+        "SALAS DE REPROCESSO": {
+            elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO",
+            tabela: "Tabela de itens - SALA DE REPROCESSO"
+        },
+        "PESAGEM CHOCOLATE": {
+            elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE",
+            tabela: "Tabela de itens - PESAGEM CHOCOLATE"
+        },
+        "PESAGEM CONSERVAS": {
+            elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS",
+            tabela: "Tabela de itens - PESAGEM CONSERVAS"
+        }
     };
 
-    // Mapeamento de legendas para ocultação de tabelas
-    const captionsParaOcultar = {
-        CONSERVAS: "Tabela itens conserva",
-        CHOCOLATE: "Tabela de itens - CHOCOLATE",
-        "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
-        PESAGEM: "Tabela de itens - SALA DE PESAGEM",
-        LEITE: "Tabela de itens - LEITE",
-        ENVASE: "Tabela de itens - ENVASE",
-        EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
-        "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
-        "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
-    };
+    // Esconde todos os elementos e tabelas
+    function esconderTodos() {
+        Object.values(setoresConfig).forEach(({ elemento, tabela }) => {
+            const el = document.getElementById(elemento);
+            const tab = [...document.querySelectorAll("table caption")].find(caption => caption.textContent.trim() === tabela);
 
-    // Função para exibir ou ocultar elementos
-    const atualizarElementos = () => {
-        const selectedValue = pai.value;
-        console.log("Atualizando elementos para:", selectedValue);
-
-        Object.keys(elements).forEach(key => {
-            const element = elements[key];
-            if (!element) {
-                console.warn(`Elemento "${key}" não encontrado no DOM.`);
-                return;
+            if (el) {
+                el.style.display = "none";
+                el.disabled = true;
             }
-            element.style.display = key === selectedValue ? "block" : "none";
-            element.disabled = key !== selectedValue;
+            if (tab) {
+                tab.closest("table").style.display = "none";
+            }
         });
-    };
+    }
 
-    // Função para exibir ou ocultar tabelas
-    const atualizarTabelas = () => {
-        const selectedValue = pai.value;
-        console.log("Atualizando tabelas para:", selectedValue);
+    // Exibe apenas o elemento e tabela do setor selecionado
+    function exibirSetor(setor) {
+        if (!setoresConfig[setor]) return;
 
-        document.querySelectorAll("table caption").forEach(caption => {
-            const tabela = caption.closest("table");
-            const deveMostrar = captionsParaOcultar[selectedValue] === caption.textContent.trim();
-            tabela.style.display = deveMostrar ? "table" : "none";
-        });
-    };
+        const { elemento, tabela } = setoresConfig[setor];
 
-    // Função central que garante a execução em sequência sem interrupção
-    const atualizarTudo = () => {
-        atualizarElementos();  // Primeiro, ajusta a exibição dos elementos
-        setTimeout(atualizarTabelas, 0);  // Em seguida, executa a atualização das tabelas sem bloquear a execução
-    };
+        const el = document.getElementById(elemento);
+        const tab = [...document.querySelectorAll("table caption")].find(caption => caption.textContent.trim() === tabela);
+
+        if (el) {
+            el.style.display = "block";
+            el.disabled = false;
+        }
+        if (tab) {
+            tab.closest("table").style.display = "table";
+        }
+    }
+
+    // Atualiza tudo em sequência
+    function atualizarTudo() {
+        esconderTodos();
+        exibirSetor(pai.value);
+    }
 
     // Chama a função ao carregar a página
     atualizarTudo();
 
-    // Adiciona evento para atualizar sempre que o seletor mudar
+    // Adiciona evento para atualizar ao mudar a seleção
     pai.addEventListener("change", atualizarTudo);
 });
