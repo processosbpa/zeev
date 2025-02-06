@@ -20,20 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
 
-    // Verificar se os elementos foram encontrados
-    Object.keys(elements).forEach(key => {
-        if (!elements[key]) {
-            console.warn(`Elemento com ID "${key}" não encontrado no DOM.`);
-        }
-    });
-
     // Função para exibir ou ocultar elementos com base na seleção
     const atualizarElementos = () => {
+        const selectedValue = pai.value;
+        console.log("Valor selecionado:", selectedValue); // Verificar valor selecionado
+
         Object.keys(elements).forEach(key => {
             const element = elements[key];
-            if (!element) return;
-            element.style.display = key === pai.value ? "block" : "none";
-            element.disabled = key !== pai.value;
+            if (!element) {
+                console.warn(`Elemento com ID "${key}" não encontrado no DOM.`);
+                return;
+            }
+            console.log(`Atualizando ${key}:`, element);
+            if (key === selectedValue) {
+                element.style.display = "block";
+                element.disabled = false;
+            } else {
+                element.style.display = "none";
+                element.disabled = true;
+            }
         });
     };
 
@@ -68,3 +73,4 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarTabelas();
     });
 });
+
