@@ -1,4 +1,4 @@
-    function relatorio() {
+document.addEventListener("DOMContentLoaded", () => {
         var captions = document.querySelectorAll("table caption");
       const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
       const elements = {
@@ -9,7 +9,7 @@
         LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
         ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
         EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        "SALAS DE REPROCESSOS": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
+        "SALAS DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
         "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
       };
@@ -35,4 +35,4 @@
       const tabela = caption.closest("table");
       tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
     });
-    }
+    });
