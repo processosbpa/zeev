@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (el) {
                 el.style.display = "none";
-                el.disabled = true;
             }
             if (tab) {
                 tab.closest("table").style.display = "none";
