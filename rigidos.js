@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       LEITE: "Tabela de itens - LEITE",
       ENVASE: "Tabela de itens - ENVASE",
       EMBALAGEM: "Tabela de itens - EMBALAGEM",
-      "SALAS DE REPROCESSOS": "Tabela de itens - SALA DE REPROCESSOS",
+      "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSOS",
       "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
       "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
     };
