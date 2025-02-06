@@ -5,68 +5,78 @@ function normalizarTexto(texto) {
 // Configuração de setores
 const setoresConfig = {
     [normalizarTexto("CONSERVAS")]: {
-        elemento: "Controle de materiais rígidos e cortantes - CONSERVAS",
-        tabela: "Tabela itens conserva"
+        elementoId: "controle-conservas",
+        tabelaId: "tabela-itens-conservas"
     },
     [normalizarTexto("CHOCOLATE")]: {
-        elemento: "Controle de materiais rígidos e cortantes - CHOCOLATE",
-        tabela: "Tabela de itens - CHOCOLATE"
+        elementoId: "controle-chocolate",
+        tabelaId: "tabela-itens-chocolate"
     },
     [normalizarTexto("FRUTAS E POLPAS")]: {
-        elemento: "FRUTA E POLPA",
-        tabela: "Tabela de itens - FRUTA E POLPA"
+        elementoId: "controle-frutas-polpas",
+        tabelaId: "tabela-itens-frutas-polpas"
     },
     [normalizarTexto("PESAGEM")]: {
-        elemento: "SALA DE PESAGEM",
-        tabela: "Tabela de itens - SALA DE PESAGEM"
+        elementoId: "controle-pesagem",
+        tabelaId: "tabela-itens-pesagem"
     },
     [normalizarTexto("LEITE")]: {
-        elemento: "Controle de materiais rígidos e cortantes - LEITE",
-        tabela: "Tabela de itens - LEITE"
+        elementoId: "controle-leite",
+        tabelaId: "tabela-itens-leite"
     },
     [normalizarTexto("ENVASE")]: {
-        elemento: "Controle de materiais rígidos e cortantes - ENVASE",
-        tabela: "Tabela de itens - ENVASE"
+        elementoId: "controle-envase",
+        tabelaId: "tabela-itens-envase"
     },
     [normalizarTexto("EMBALAGEM")]: {
-        elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM",
-        tabela: "Tabela de itens - EMBALAGEM"
+        elementoId: "controle-embalagem",
+        tabelaId: "tabela-itens-embalagem"
     },
     [normalizarTexto("SALAS DE REPROCESSO")]: {
-        elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO",
-        tabela: "Tabela de itens - SALA DE REPROCESSO"
+        elementoId: "controle-sala-reprocesso",
+        tabelaId: "tabela-itens-sala-reprocesso"
     },
     [normalizarTexto("PESAGEM CHOCOLATE")]: {
-        elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE",
-        tabela: "Tabela de itens - PESAGEM CHOCOLATE"
+        elementoId: "controle-pesagem-chocolate",
+        tabelaId: "tabela-itens-pesagem-chocolate"
     },
     [normalizarTexto("PESAGEM CONSERVAS")]: {
-        elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS",
-        tabela: "Tabela de itens - PESAGEM CONSERVAS"
+        elementoId: "controle-pesagem-conservas",
+        tabelaId: "tabela-itens-pesagem-conservas"
     }
 };
 
-// Função para alternar exibição dos elementos
-function atualizarElementos(setorSelecionado) {
-    Object.keys(setoresConfig).forEach(setor => {
-        const elemento = setoresConfig[setor].elemento;
-        const tabela = setoresConfig[setor].tabela;
-
-        console.log(`Processando setor: ${setor} | Elemento: ${elemento} | Tabela: ${tabela}`);
-
-        // Simula manipulação dos elementos (substitua pelo que precisa fazer)
-        if (setor === normalizarTexto(setorSelecionado)) {
-            console.log(`Exibindo: ${elemento} e ${tabela}`);
-        } else {
-            console.log(`Ocultando: ${elemento} e ${tabela}`);
-        }
+// Função para ocultar todos os setores
+function ocultarTodosOsSetores() {
+    Object.values(setoresConfig).forEach(({ elementoId, tabelaId }) => {
+        let elemento = document.getElementById(elementoId);
+        let tabela = document.getElementById(tabelaId);
+        if (elemento) elemento.style.display = "none";
+        if (tabela) tabela.style.display = "none";
     });
+}
+
+// Função para atualizar exibição
+function atualizarElementos(setorSelecionado) {
+    ocultarTodosOsSetores(); // Primeiro, esconde todos
+
+    let setorNormalizado = normalizarTexto(setorSelecionado);
+    let setor = setoresConfig[setorNormalizado];
+
+    if (setor) {
+        let elemento = document.getElementById(setor.elementoId);
+        let tabela = document.getElementById(setor.tabelaId);
+
+        if (elemento) elemento.style.display = "block";
+        if (tabela) tabela.style.display = "block";
+    } else {
+        console.warn(`Setor "${setorSelecionado}" não encontrado.`);
+    }
 }
 
 // Simula evento de mudança de seleção (substitua pelo real evento)
 function simularMudanca() {
-    const setorSelecionado = "CHOCOLATE"; // Simulação de valor alterado no sistema
-    console.log(`Setor selecionado: ${setorSelecionado}`);
+    const setorSelecionado = "CHOCOLATE"; // Simulação
     atualizarElementos(setorSelecionado);
 }
 
