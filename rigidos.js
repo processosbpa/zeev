@@ -1,5 +1,4 @@
 function elementosId() {
-    var captions = document.querySelectorAll("table caption");
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
     const captionsParaOcultar = {
         CONSERVAS: "Tabela itens conserva",
