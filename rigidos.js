@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
         EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
         PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
-        "SALA DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
+        SALA DE REPROCESSO: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
         PESAGEM CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
     const toggleElement = (element, show) => {
@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const captionsParaOcultar = {
         CONSERVAS: "Tabela itens conserva",
         CHOCOLATE: "Tabela de itens - CHOCOLATE",
-        "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
+        FRUTAS E POLPAS: "Tabela de itens - FRUTA E POLPA",
         PESAGEM: "Tabela de itens - SALA DE PESAGEM",
         LEITE: "Tabela de itens - LEITE",
         ENVASE: "Tabela de itens - ENVASE",
         EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        "SALA DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
+        SALA DE REPROCESSO: "Tabela de itens - SALA DE REPROCESSO",
         PESAGEM CHOCOLATE: "Tabela de itens - PESAGEM CHOCOLATE",
         PESAGEM CONSERVAS: "Tabela de itens - PESAGEM CONSERVAS"
     };
