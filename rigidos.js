@@ -27,6 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
             tabela: "Tabela de itens - ENVASE",
             elemento: "Controle de materiais rígidos e cortantes - ENVASE"
         },
+        EMBALAGEM: {
+            tabela: "Tabela de itens - EMBALAGEM",
+            elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM"
+        },
+        "SALAS DE REPROCESSO": {
+            tabela: "Tabela de itens - SALA DE REPROCESSO",
+            elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"
+        },
         "PESAGEM CHOCOLATE": {
             tabela: "Tabela de itens - PESAGEM CHOCOLATE",
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"
@@ -52,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     .find(caption => caption.textContent.trim() === tabela)
                                     ?.closest("table");
 
+            // Verifica se o valor selecionado corresponde ao item
             if (valorSelecionado === key) {
                 // Exibe o elemento e a tabela se o valor selecionado for igual à chave
                 if (elElemento) {
