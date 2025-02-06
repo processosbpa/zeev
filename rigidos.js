@@ -31,14 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
             elemento: "Controle de materiais rígidos e cortantes - LEITE",
             tabela: "Tabela de itens - LEITE"
         },
-        [normalize("ENVASE")]: {
-            elemento: "Controle de materiais rígidos e cortantes - ENVASE",
-            tabela: "Tabela de itens - ENVASE"
-        },
-        [normalize("EMBALAGEM")]: {
-            elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM",
-            tabela: "Tabela de itens - EMBALAGEM"
-        },
         [normalize("PESAGEM CHOCOLATE")]: {
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE",
             tabela: "Tabela de itens - PESAGEM CHOCOLATE"
