@@ -13,15 +13,17 @@ function elementosId() {
         "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
     };
 
+    // Itera sobre todos os captions das tabelas
     document.querySelectorAll("table caption").forEach(caption => {
         const tabela = caption.closest("table");
         const captionText = caption.textContent.trim();
 
-        // Verifica se a legenda da tabela está no objeto captionsParaOcultar
+        // Se a legenda corresponde ao valor selecionado, exibe a tabela
         if (captionsParaOcultar[pai.value] === captionText) {
-            tabela.style.display = "table"; // Exibe a tabela
+            tabela.style.display = "table";
         } else if (Object.values(captionsParaOcultar).includes(captionText)) {
-            tabela.style.display = "none"; // Oculta as outras tabelas
+            // Se não, oculta as outras tabelas
+            tabela.style.display = "none";
         }
     });
 }
@@ -41,17 +43,17 @@ function tabelasId() {
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
 
-    const toggleElement = (element, show) => {
-        element.style.display = show ? "block" : "none";
-        element.disabled = !show;
-    };
-
-    Object.keys(elements).forEach(key => toggleElement(elements[key], key === pai.value));
+    // Função para alternar entre mostrar e esconder os elementos
+    Object.keys(elements).forEach(key => {
+        const element = elements[key];
+        element.style.display = (key === pai.value) ? "block" : "none";
+        element.disabled = (key !== pai.value);
+    });
 }
 
-// Função para executar primeiro, depois de 15 segundos executa a segunda função
+// Função para garantir que as funções sejam executadas uma após a outra
 function executarFuncoesSequenciais() {
-    // Executa a primeira função
+    // Executa a primeira função para atualizar tabelas
     elementosId();
 
     // Define um timeout de 15 segundos para executar a segunda função
@@ -60,5 +62,7 @@ function executarFuncoesSequenciais() {
     }, 15000); // 15000 milissegundos = 15 segundos
 }
 
-// Chama a função principal para executar as funções em sequência
-executarFuncoesSequenciais();
+// Chama a função principal para executar as funções em sequência quando a página carregar
+document.addEventListener("DOMContentLoaded", () => {
+    executarFuncoesSequenciais();
+});
