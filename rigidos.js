@@ -1,51 +1,11 @@
-function elementosId() {
-    var captions = document.querySelectorAll("table caption");
-    const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
-    const captionsParaOcultar = {
-        CONSERVAS: "Tabela itens conserva",
-        CHOCOLATE: "Tabela de itens - CHOCOLATE",
-        "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
-        PESAGEM: "Tabela de itens - SALA DE PESAGEM",
-        LEITE: "Tabela de itens - LEITE",
-        ENVASE: "Tabela de itens - ENVASE",
-        EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
-        "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
-        "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
-    };
-    document.querySelectorAll("table caption").forEach(caption => {
-        const tabela = caption.closest("table");
-        tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
-    });
-}
-function tabelasId() {
-    var captions = document.querySelectorAll("table caption");
-    const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
-    const elements = {
-        CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
-        CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
-        "FRUTAS E POLPAS": document.getElementById("FRUTA E POLPA"),
-        PESAGEM: document.getElementById("SALA DE PESAGEM"),
-        LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
-        ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
-        EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        "SALAS DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
-        "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
-        "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
-    };
-    const toggleElement = (element, show) => {
-        element.style.display = show ? "block" : "none";
-        element.disabled = !show;
-    };
-    Object.keys(elements).forEach(key => toggleElement(elements[key], key === pai.value));
-}
-<script>
 document.addEventListener("DOMContentLoaded", () => {
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
+
+    // Mapeamento dos itens (tabelas e IDs a serem exibidos)
     const elementos = {
         CONSERVAS: {
-            tabela: "Tabela itens conserva",
-            elemento: "Controle de materiais rígidos e cortantes - CONSERVAS"
+            tabela: "Tabela de itens - PESAGEM CONSERVAS",
+            elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS"
         },
         CHOCOLATE: {
             tabela: "Tabela de itens - CHOCOLATE",
@@ -84,18 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS"
         }
     };
+
+    // Função para mostrar ou ocultar os elementos e tabelas
     const atualizarExibicao = () => {
         const valorSelecionado = pai.value;
         console.log("Valor selecionado:", valorSelecionado);
+
+        // Itera sobre cada item no mapeamento e aplica a lógica
         for (const key in elementos) {
             const { tabela, elemento } = elementos[key];
 
+            // Seleciona os elementos e tabelas pelo ID
             const elElemento = document.getElementById(elemento);
             const elTabela = Array.from(document.querySelectorAll("table caption"))
                                     .find(caption => caption.textContent.trim() === tabela)
                                     ?.closest("table");
 
             if (valorSelecionado === key) {
+                // Exibe o elemento e a tabela se o valor selecionado for igual à chave
                 if (elElemento) {
                     elElemento.style.display = "block";
                     elElemento.disabled = false;
@@ -104,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     elTabela.style.display = "table";
                 }
             } else {
+                // Oculta o elemento e a tabela caso contrário
                 if (elElemento) {
                     elElemento.style.display = "none";
                     elElemento.disabled = true;
@@ -114,7 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     };
+
+    // Inicializa a função ao carregar a página
     atualizarExibicao();
 
+    // Adiciona evento para atualizar a exibição sempre que o seletor mudar
     pai.addEventListener("change", atualizarExibicao);
 });
