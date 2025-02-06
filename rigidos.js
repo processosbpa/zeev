@@ -1,75 +1,34 @@
-<script>
-function normalizarTexto(texto) {
-    return texto.trim().toUpperCase();
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
+  const conservas = document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS");
+  const chocolate = document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE");
+  const fruta = document.getElementById("FRUTA E POLPA");
+  const pesagem = document.getElementById("SALA DE PESAGEM");
 
-// Configuração de setores e suas tabelas
-const setoresConfig = {
-    "CONSERVAS": { elementoId: "controle-conservas", tabelaId: "tabela-itens-conservas" },
-    "CHOCOLATE": { elementoId: "controle-chocolate", tabelaId: "tabela-itens-chocolate" },
-    "FRUTAS E POLPAS": { elementoId: "controle-frutas-polpas", tabelaId: "tabela-itens-frutas-polpas" },
-    "PESAGEM": { elementoId: "controle-pesagem", tabelaId: "tabela-itens-pesagem" },
-    "LEITE": { elementoId: "controle-leite", tabelaId: "tabela-itens-leite" },
-    "ENVASE": { elementoId: "controle-envase", tabelaId: "tabela-itens-envase" },
-    "EMBALAGEM": { elementoId: "controle-embalagem", tabelaId: "tabela-itens-embalagem" },
-    "SALAS DE REPROCESSO": { elementoId: "controle-sala-reprocesso", tabelaId: "tabela-itens-sala-reprocesso" },
-    "PESAGEM CHOCOLATE": { elementoId: "controle-pesagem-chocolate", tabelaId: "tabela-itens-pesagem-chocolate" },
-    "PESAGEM CONSERVAS": { elementoId: "controle-pesagem-conservas", tabelaId: "tabela-itens-pesagem-conservas" }
-};
-
-// Função para ocultar todas as tabelas
-function ocultarTodosOsSetores() {
-    console.log("Ocultando todos os setores...");
-    Object.values(setoresConfig).forEach(({ elementoId, tabelaId }) => {
-        let elemento = document.getElementById(elementoId);
-        let tabela = document.getElementById(tabelaId);
-
-        if (elemento) {
-            elemento.style.display = "none";
-            console.log(`Ocultado: ${elementoId}`);
-        }
-
-        if (tabela) {
-            tabela.style.display = "none";
-            console.log(`Ocultado: ${tabelaId}`);
-        }
-    });
-}
-
-// Função para exibir o setor correto
-function atualizarElementos(setorSelecionado) {
-    ocultarTodosOsSetores(); // Primeiro, esconde tudo
-
-    let setorNormalizado = normalizarTexto(setorSelecionado);
-    let setor = setoresConfig[setorNormalizado];
-
-    if (setor) {
-        let elemento = document.getElementById(setor.elementoId);
-        let tabela = document.getElementById(setor.tabelaId);
-
-        console.log(`Exibindo setor: ${setorSelecionado}`);
-
-        if (elemento) {
-            elemento.style.display = "block";
-            console.log(`Exibindo: ${setor.elementoId}`);
-        }
-
-        if (tabela) {
-            tabela.style.display = "block";
-            console.log(`Exibindo: ${setor.tabelaId}`);
-        }
-    } else {
-        console.warn(`Setor "${setorSelecionado}" não encontrado!`);
+  // Oculta ou exibe os elementos e os habilita/desabilita de acordo com o valor de pai
+  const toggleElement = (element, show) => {
+    if (element) { // Verifica se o elemento existe
+      element.style.display = show ? "block" : "none";
+      element.disabled = !show;
     }
-}
+  };
 
-// Simula evento de mudança de setor
-function simularMudanca() {
-    const setorSelecionado = "CHOCOLATE"; // Exemplo para teste
-    console.log(`Setor selecionado: ${setorSelecionado}`);
-    atualizarElementos(setorSelecionado);
-}
+  // Função para atualizar a exibição com base no valor de `pai`
+  const atualizarExibicao = () => {
+    if (pai && pai.value) {
+      console.log(`Setor selecionado: ${pai.value}`); // Debug para verificar o valor selecionado
+      toggleElement(conservas, pai.value === "CONSERVAS");
+      toggleElement(chocolate, pai.value === "CHOCOLATE");
+      toggleElement(fruta, pai.value === "FRUTA E POLPA");
+      toggleElement(pesagem, pai.value === "PESAGEM");
+    }
+  };
 
-// Executa a simulação quando a página carrega
-document.addEventListener("DOMContentLoaded", simularMudanca);
-</script>
+  // Chama a função ao carregar a página
+  atualizarExibicao();
+
+  // Adiciona um eventListener para capturar mudanças no campo pai
+  if (pai) {
+    pai.addEventListener("change", atualizarExibicao);
+  }
+});
