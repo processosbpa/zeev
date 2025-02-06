@@ -15,12 +15,18 @@ function elementosId() {
 
     document.querySelectorAll("table caption").forEach(caption => {
         const tabela = caption.closest("table");
-        tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
+        const captionText = caption.textContent.trim();
+
+        // Verifica se a legenda da tabela está no objeto captionsParaOcultar
+        if (captionsParaOcultar[pai.value] === captionText) {
+            tabela.style.display = "table"; // Exibe a tabela
+        } else if (Object.values(captionsParaOcultar).includes(captionText)) {
+            tabela.style.display = "none"; // Oculta as outras tabelas
+        }
     });
 }
 
 function tabelasId() {
-    var captions = document.querySelectorAll("table caption");
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
     const elements = {
         CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
@@ -46,12 +52,11 @@ function tabelasId() {
 // Função para executar primeiro, depois de 15 segundos executa a segunda função
 function executarFuncoesSequenciais() {
     // Executa a primeira função
-    
-    tabelasId();
+    elementosId();
 
     // Define um timeout de 15 segundos para executar a segunda função
     setTimeout(() => {
-        elementosId();
+        tabelasId();
     }, 15000); // 15000 milissegundos = 15 segundos
 }
 
