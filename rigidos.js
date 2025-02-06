@@ -1,3 +1,4 @@
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
 
@@ -19,12 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
 
-    // Verificar se os elementos foram encontrados
-    Object.keys(elements).forEach(key => {
-        if (!elements[key]) {
-            console.warn(`Elemento com ID "${key}" não encontrado no DOM.`);
-        }
-    });
+    const captionsParaOcultar = {
+        CONSERVAS: "Tabela itens conserva",
+        CHOCOLATE: "Tabela de itens - CHOCOLATE",
+        "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
+        PESAGEM: "Tabela de itens - SALA DE PESAGEM",
+        LEITE: "Tabela de itens - LEITE",
+        ENVASE: "Tabela de itens - ENVASE",
+        EMBALAGEM: "Tabela de itens - EMBALAGEM",
+        "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
+        "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
+        "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
+    };
 
     // Função para controlar a exibição dos elementos
     const atualizarElementos = () => {
@@ -36,9 +43,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Executa a função para garantir que rode ao carregar a página
+    // Função para controlar a exibição das tabelas
+    const atualizarTabelas = () => {
+        document.querySelectorAll("table caption").forEach(caption => {
+            const tabela = caption.closest("table");
+            if (!tabela) return;
+            tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
+        });
+    };
+
+    // Executa ambas as funções no carregamento da página
     atualizarElementos();
+    atualizarTabelas();
 
     // Adiciona evento para atualizar ao mudar a seleção
-    pai.addEventListener("change", atualizarElementos);
+    pai.addEventListener("change", () => {
+        atualizarElementos();
+        atualizarTabelas();
+    });
 });
+</script>
