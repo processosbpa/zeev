@@ -36,5 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
         const tabela = caption.closest("table");
         tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
     });
-    }, 500);
+    }, 5000);
 });
