@@ -1,34 +1,43 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
-  const conservas = document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS");
-  const chocolate = document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE");
-  const fruta = document.getElementById("FRUTA E POLPA");
-  const pesagem = document.getElementById("SALA DE PESAGEM");
-
-  // Oculta ou exibe os elementos e os habilita/desabilita de acordo com o valor de pai
-  const toggleElement = (element, show) => {
-    if (element) { // Verifica se o elemento existe
-      element.style.display = show ? "block" : "none";
-      element.disabled = !show;
+function elementosId() {
+    var captions = document.querySelectorAll("table caption");
+    const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
+    const captionsParaOcultar = {
+                CONSERVAS: "Tabela itens conserva",
+                CHOCOLATE: "Tabela de itens - CHOCOLATE",
+                "FRUTAS E POLPAS": "Tabela de itens - FRUTA E POLPA",
+                PESAGEM: "Tabela de itens - SALA DE PESAGEM",
+                LEITE: "Tabela de itens - LEITE",
+                ENVASE: "Tabela de itens - ENVASE",
+                EMBALAGEM: "Tabela de itens - EMBALAGEM",
+                "SALAS DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSO",
+                "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
+                "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
+            };
+    
+            document.querySelectorAll("table caption").forEach(caption => {
+                const tabela = caption.closest("table");
+                tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
+            });
     }
-  };
 
-  // Função para atualizar a exibição com base no valor de `pai`
-  const atualizarExibicao = () => {
-    if (pai && pai.value) {
-      console.log(`Setor selecionado: ${pai.value}`); // Debug para verificar o valor selecionado
-      toggleElement(conservas, pai.value === "CONSERVAS");
-      toggleElement(chocolate, pai.value === "CHOCOLATE");
-      toggleElement(fruta, pai.value === "FRUTA E POLPA");
-      toggleElement(pesagem, pai.value === "PESAGEM");
-    }
-  };
-
-  // Chama a função ao carregar a página
-  atualizarExibicao();
-
-  // Adiciona um eventListener para capturar mudanças no campo pai
-  if (pai) {
-    pai.addEventListener("change", atualizarExibicao);
-  }
-});
+    function tabelasId() {
+        var captions = document.querySelectorAll("table caption");
+      const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
+      const elements = {
+        CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
+        CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
+        "FRUTAS E POLPAS": document.getElementById("FRUTA E POLPA"),
+        PESAGEM: document.getElementById("SALA DE PESAGEM"),
+        LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
+        ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
+        EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
+        "SALAS DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
+        "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
+        "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
+      };
+      const toggleElement = (element, show) => {
+        element.style.display = show ? "block" : "none";
+        element.disabled = !show;
+      };
+      Object.keys(elements).forEach(key => toggleElement(elements[key], key === pai.value));
+}
