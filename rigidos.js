@@ -39,10 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM",
             tabela: "Tabela de itens - EMBALAGEM"
         },
-        [normalize("SALAS DE REPROCESSO")]: {
-            elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO",
-            tabela: "Tabela de itens - SALA DE REPROCESSO"
-        },
         [normalize("PESAGEM CHOCOLATE")]: {
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE",
             tabela: "Tabela de itens - PESAGEM CHOCOLATE"
