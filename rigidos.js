@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
         ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
         EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
         PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
+        PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
         PESAGEM CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
     const toggleElement = (element, show) => {
