@@ -1,4 +1,5 @@
 function elementosId() {
+    var captions = document.querySelectorAll("table caption");
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
     const captionsParaOcultar = {
         CONSERVAS: "Tabela itens conserva",
@@ -12,23 +13,13 @@ function elementosId() {
         "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
         "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
     };
-
-    // Itera sobre todos os captions das tabelas
     document.querySelectorAll("table caption").forEach(caption => {
         const tabela = caption.closest("table");
-        const captionText = caption.textContent.trim();
-
-        // Se a legenda corresponde ao valor selecionado, exibe a tabela
-        if (captionsParaOcultar[pai.value] === captionText) {
-            tabela.style.display = "table";
-        } else if (Object.values(captionsParaOcultar).includes(captionText)) {
-            // Se não, oculta as outras tabelas
-            tabela.style.display = "none";
-        }
+        tabela.style.display = captionsParaOcultar[pai.value] === caption.textContent.trim() ? "table" : "none";
     });
 }
-
 function tabelasId() {
+    var captions = document.querySelectorAll("table caption");
     const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
     const elements = {
         CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
@@ -42,27 +33,88 @@ function tabelasId() {
         "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
         "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
-
-    // Função para alternar entre mostrar e esconder os elementos
-    Object.keys(elements).forEach(key => {
-        const element = elements[key];
-        element.style.display = (key === pai.value) ? "block" : "none";
-        element.disabled = (key !== pai.value);
-    });
+    const toggleElement = (element, show) => {
+        element.style.display = show ? "block" : "none";
+        element.disabled = !show;
+    };
+    Object.keys(elements).forEach(key => toggleElement(elements[key], key === pai.value));
 }
-
-// Função para garantir que as funções sejam executadas uma após a outra
-function executarFuncoesSequenciais() {
-    // Executa a primeira função para atualizar tabelas
-    elementosId();
-
-    // Define um timeout de 15 segundos para executar a segunda função
-    setTimeout(() => {
-        tabelasId();
-    }, 15000); // 15000 milissegundos = 15 segundos
-}
-
-// Chama a função principal para executar as funções em sequência quando a página carregar
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-    executarFuncoesSequenciais();
+    const pai = document.querySelector('[xname="inpsetorASerVerificado"]');
+    const elementos = {
+        CONSERVAS: {
+            tabela: "Tabela itens conserva",
+            elemento: "Controle de materiais rígidos e cortantes - CONSERVAS"
+        },
+        CHOCOLATE: {
+            tabela: "Tabela de itens - CHOCOLATE",
+            elemento: "Controle de materiais rígidos e cortantes - CHOCOLATE"
+        },
+        "FRUTAS E POLPAS": {
+            tabela: "Tabela de itens - FRUTA E POLPA",
+            elemento: "FRUTA E POLPA"
+        },
+        PESAGEM: {
+            tabela: "Tabela de itens - SALA DE PESAGEM",
+            elemento: "SALA DE PESAGEM"
+        },
+        LEITE: {
+            tabela: "Tabela de itens - LEITE",
+            elemento: "Controle de materiais rígidos e cortantes - LEITE"
+        },
+        ENVASE: {
+            tabela: "Tabela de itens - ENVASE",
+            elemento: "Controle de materiais rígidos e cortantes - ENVASE"
+        },
+        EMBALAGEM: {
+            tabela: "Tabela de itens - EMBALAGEM",
+            elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM"
+        },
+        "SALAS DE REPROCESSO": {
+            tabela: "Tabela de itens - SALA DE REPROCESSO",
+            elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"
+        },
+        "PESAGEM CHOCOLATE": {
+            tabela: "Tabela de itens - PESAGEM CHOCOLATE",
+            elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"
+        },
+        "PESAGEM CONSERVAS": {
+            tabela: "Tabela de itens - PESAGEM CONSERVAS",
+            elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS"
+        }
+    };
+    const atualizarExibicao = () => {
+        const valorSelecionado = pai.value;
+        console.log("Valor selecionado:", valorSelecionado);
+        for (const key in elementos) {
+            const { tabela, elemento } = elementos[key];
+
+            const elElemento = document.getElementById(elemento);
+            const elTabela = Array.from(document.querySelectorAll("table caption"))
+                                    .find(caption => caption.textContent.trim() === tabela)
+                                    ?.closest("table");
+
+            if (valorSelecionado === key) {
+                if (elElemento) {
+                    elElemento.style.display = "block";
+                    elElemento.disabled = false;
+                }
+                if (elTabela) {
+                    elTabela.style.display = "table";
+                }
+            } else {
+                if (elElemento) {
+                    elElemento.style.display = "none";
+                    elElemento.disabled = true;
+                }
+                if (elTabela) {
+                    elTabela.style.display = "none";
+                }
+            }
+        }
+    };
+    atualizarExibicao();
+
+    pai.addEventListener("change", atualizarExibicao);
 });
