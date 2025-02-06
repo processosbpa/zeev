@@ -6,45 +6,48 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Associa nomes de setores com IDs de elementos e tabelas
+    // Normaliza os valores removendo espaços extras
+    const normalize = (text) => text.trim().toUpperCase();
+
+    // Configuração dos setores
     const setoresConfig = {
-        CONSERVAS: {
+        [normalize("CONSERVAS")]: {
             elemento: "Controle de materiais rígidos e cortantes - CONSERVAS",
             tabela: "Tabela itens conserva"
         },
-        CHOCOLATE: {
+        [normalize("CHOCOLATE")]: {
             elemento: "Controle de materiais rígidos e cortantes - CHOCOLATE",
             tabela: "Tabela de itens - CHOCOLATE"
         },
-        "FRUTAS E POLPAS": {
+        [normalize("FRUTAS E POLPAS")]: {
             elemento: "FRUTA E POLPA",
             tabela: "Tabela de itens - FRUTA E POLPA"
         },
-        PESAGEM: {
+        [normalize("PESAGEM")]: {
             elemento: "SALA DE PESAGEM",
             tabela: "Tabela de itens - SALA DE PESAGEM"
         },
-        LEITE: {
+        [normalize("LEITE")]: {
             elemento: "Controle de materiais rígidos e cortantes - LEITE",
             tabela: "Tabela de itens - LEITE"
         },
-        ENVASE: {
+        [normalize("ENVASE")]: {
             elemento: "Controle de materiais rígidos e cortantes - ENVASE",
             tabela: "Tabela de itens - ENVASE"
         },
-        EMBALAGEM: {
+        [normalize("EMBALAGEM")]: {
             elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM",
             tabela: "Tabela de itens - EMBALAGEM"
         },
-        "SALAS DE REPROCESSO": {
+        [normalize("SALAS DE REPROCESSO")]: {
             elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO",
             tabela: "Tabela de itens - SALA DE REPROCESSO"
         },
-        "PESAGEM CHOCOLATE": {
+        [normalize("PESAGEM CHOCOLATE")]: {
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE",
             tabela: "Tabela de itens - PESAGEM CHOCOLATE"
         },
-        "PESAGEM CONSERVAS": {
+        [normalize("PESAGEM CONSERVAS")]: {
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS",
             tabela: "Tabela de itens - PESAGEM CONSERVAS"
         }
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function esconderTodos() {
         Object.values(setoresConfig).forEach(({ elemento, tabela }) => {
             const el = document.getElementById(elemento);
-            const tab = [...document.querySelectorAll("table caption")].find(caption => caption.textContent.trim() === tabela);
+            const tab = [...document.querySelectorAll("table caption")].find(caption => normalize(caption.textContent) === normalize(tabela));
 
             if (el) {
                 el.style.display = "none";
@@ -68,12 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Exibe apenas o elemento e tabela do setor selecionado
     function exibirSetor(setor) {
-        if (!setoresConfig[setor]) return;
+        const setorNormalizado = normalize(setor);
+        if (!setoresConfig[setorNormalizado]) return;
 
-        const { elemento, tabela } = setoresConfig[setor];
+        const { elemento, tabela } = setoresConfig[setorNormalizado];
 
         const el = document.getElementById(elemento);
-        const tab = [...document.querySelectorAll("table caption")].find(caption => caption.textContent.trim() === tabela);
+        const tab = [...document.querySelectorAll("table caption")].find(caption => normalize(caption.textContent) === normalize(tabela));
 
         if (el) {
             el.style.display = "block";
