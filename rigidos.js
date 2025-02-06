@@ -27,14 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tabela: "Tabela de itens - ENVASE",
             elemento: "Controle de materiais rígidos e cortantes - ENVASE"
         },
-        EMBALAGEM: {
-            tabela: "Tabela de itens - EMBALAGEM",
-            elemento: "Controle de materiais rígidos e cortantes - EMBALAGEM"
-        },
-        "SALAS DE REPROCESSO": {
-            tabela: "Tabela de itens - SALA DE REPROCESSO",
-            elemento: "Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"
-        },
         "PESAGEM CHOCOLATE": {
             tabela: "Tabela de itens - PESAGEM CHOCOLATE",
             elemento: "Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"
