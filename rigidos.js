@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
         ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
         EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        REPROCESSOS: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
+        "SALA DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
         PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
         PESAGEM CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         LEITE: "Tabela de itens - LEITE",
         ENVASE: "Tabela de itens - ENVASE",
         EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        REPROCESSOS: "Tabela de itens - SALA DE REPROCESSOS",
+        "SALA DE REPROCESSO": "Tabela de itens - SALA DE REPROCESSOS",
         PESAGEM CHOCOLATE: "Tabela de itens - PESAGEM CHOCOLATE",
         PESAGEM CONSERVAS: "Tabela de itens - PESAGEM CONSERVAS"
     };
