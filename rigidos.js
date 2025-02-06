@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
         CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
-        "FRUTAS E POLPAS": document.getElementById("FRUTA E POLPA"),
+        FRUTAS E POLPAS: document.getElementById("FRUTA E POLPA"),
         PESAGEM: document.getElementById("SALA DE PESAGEM"),
         LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
         ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
         EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        "SALAS DE REPROCESSOS": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
-        "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
-        "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
+        SALAS DE REPROCESSOS: document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSOS"),
+        PESAGEM CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
+        PESAGEM CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
     };
     const toggleElement = (element, show) => {
         element.style.display = show ? "block" : "none";
@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
         LEITE: "Tabela de itens - LEITE",
         ENVASE: "Tabela de itens - ENVASE",
         EMBALAGEM: "Tabela de itens - EMBALAGEM",
-        "SALAS DE REPROCESSOS": "Tabela de itens - SALA DE REPROCESSOS",
-        "PESAGEM CHOCOLATE": "Tabela de itens - PESAGEM CHOCOLATE",
-        "PESAGEM CONSERVAS": "Tabela de itens - PESAGEM CONSERVAS"
+        SALAS DE REPROCESSOS: "Tabela de itens - SALA DE REPROCESSOS",
+        PESAGEM CHOCOLATE: "Tabela de itens - PESAGEM CHOCOLATE",
+        PESAGEM CONSERVAS: "Tabela de itens - PESAGEM CONSERVAS"
     };
     document.querySelectorAll("table caption").forEach(caption => {
         const tabela = caption.closest("table");
