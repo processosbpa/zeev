@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (valorSelecionado === key) {
                 // Exibe o elemento e a tabela se o valor selecionado for igual à chave
                 if (elElemento) {
-                    elElemento.style.display = "block";
                     elElemento.disabled = false;
                 }
                 if (elTabela) {
@@ -73,11 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // Oculta o elemento e a tabela caso contrário
                 if (elElemento) {
-                    elElemento.style.display = "none";
                     elElemento.disabled = true;
                 }
                 if (elTabela) {
-                    elTabela.style.display = "none";
+                    elTabela.disabled = true;
                 }
             }
         }
