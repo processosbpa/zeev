@@ -6,41 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Mapeamento de elementos para exibição
-    const elements = {
-        CONSERVAS: document.getElementById("Controle de materiais rígidos e cortantes - CONSERVAS"),
-        CHOCOLATE: document.getElementById("Controle de materiais rígidos e cortantes - CHOCOLATE"),
-        "FRUTAS E POLPAS": document.getElementById("FRUTA E POLPA"),
-        PESAGEM: document.getElementById("SALA DE PESAGEM"),
-        LEITE: document.getElementById("Controle de materiais rígidos e cortantes - LEITE"),
-        ENVASE: document.getElementById("Controle de materiais rígidos e cortantes - ENVASE"),
-        EMBALAGEM: document.getElementById("Controle de materiais rígidos e cortantes - EMBALAGEM"),
-        "SALAS DE REPROCESSO": document.getElementById("Controle de materiais rígidos e cortantes - SALA DE REPROCESSO"),
-        "PESAGEM CHOCOLATE": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CHOCOLATE"),
-        "PESAGEM CONSERVAS": document.getElementById("Controle de materiais rígidos e cortantes - PESAGEM CONSERVAS")
-    };
-
-    // Função para exibir ou ocultar elementos com base na seleção
-    const atualizarElementos = () => {
-        const selectedValue = pai.value;
-        console.log("Valor selecionado:", selectedValue); // Verificar valor selecionado
-
-        Object.keys(elements).forEach(key => {
-            const element = elements[key];
-            if (!element) {
-                console.warn(`Elemento com ID "${key}" não encontrado no DOM.`);
-                return;
-            }
-            console.log(`Atualizando ${key}:`, element);
-            if (key === selectedValue) {
-                element.style.display = "block";
-                element.disabled = false;
-            } else {
-                element.style.display = "none";
-                element.disabled = true;
-            }
-        });
-    };
+    // Mapeamento de elementos para exibiçã
 
     // Função para exibir ou ocultar tabelas com base no caption
     const atualizarTabelas = () => {
@@ -64,12 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Executa ambas as funções ao carregar a página
-    atualizarElementos();
     atualizarTabelas();
 
     // Adiciona evento para atualizar sempre que o seletor mudar
     pai.addEventListener("change", () => {
-        atualizarElementos();
         atualizarTabelas();
     });
 });
